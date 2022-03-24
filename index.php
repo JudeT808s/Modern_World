@@ -3,7 +3,8 @@
 
   try {
       
-    $sideArticles = Get::all('breaking', 2);
+    $sideArticles = Get::all('articles', 2);
+    $topStories = Get::all('articles', 1);
       
   } catch (Exception $e) {
     die("Exception: " . $e->getMessage());
@@ -31,33 +32,25 @@
      
     <div class="topStory width-8 ">
         <div class="heading width-8">
+            <?php
+             foreach($topStories as $topStory){
+
+            ?>
             <h2 class="story-header">Top Story</h1>
             <hr>
         </div>
         
-        <h1>The Russian threat to invade Ukraine</h1>
-        <p class="date"><strong>Zvi Bar'el</strong> - Feb 10, 2022 -2:51PM</p>
-        <h5>The Turkish telenovela “Magnificent Century,” which debuted in 2011, quickly became one of the most-watched
-             Turkish TV shows ever. </h5>
+        <h1><?= $topStory->title ?></h1>
+        <p class="date"><strong><?= $topStory->author_id ?></strong> - <?= $topStory->date ?> -<?= $topStory->time ?></p>
+        <h5>T<?= $topStory->subtitle ?></h5>
              <div class="nested">
                  <div class="width-12">
-                   <p> The series reminded Turks of the age of the great conquests that expanded the Ottoman Empire up to the Russian border.
-                     Ukrainians, meanwhile, were reminded of the close relationship between the sultan and his Slavic maidservant.
-                    "Before, it was just fields here with a tiny fence," border guard Maxim Boyar tells me.
-                    "Since the war started in 2014, we've been strengthening defenses.</p><p>
-                    The government has given us more weapons and engineering equipment. We're ready anytime, anywhere."
-                     Ukraine and Russia have disagreed about Ukraine's rightful border since the break up of the Soviet Union and Ukraine became an independent country in 1991.
-                     The series reminded Turks of the age of the great conquests that expanded the Ottoman Empire up to the Russian border.
+                   <p> <?= $topStory->article ?>
                     </p>
                     
                     
                     <p>
-                     Ukrainians, meanwhile, were reminded of the close relationship between the sultan and his Slavic maidservant.
-
-                     "Before, it was just fields here with a tiny fence," border guard Maxim Boyar tells me. "Since the war started in 2014,
-                      we've been strengthening defenses. We're ready anytime, anywhere."
-                      "Before 2014, we used to have coffee or tea sometimes with our Russian counterparts, but no longer." Boyar says. In Ukraine, 
-                      the border service is part of the armed forces and are trained and armed as soldiers. 
+                    <?= $topStory->article ?>
                     </p> 
                         
                         
@@ -67,6 +60,9 @@
 
              </div>
     </div>
+    <?php
+             }
+    ?>
         <!-- 1 Grid Gap -->
         <div class=" width-1"></div>
         <div class="medium width-3">
@@ -89,7 +85,7 @@
                         <h4><?= $sideArticle->title ?></h4>
                         <p class="preview"><?= $sideArticle->subtitle ?></p>
             
-                         <p><strong>Berkeley Lovelace Jr.</strong> - Feb 10, 2022 -2:51PM</p>
+                         <p><strong>><?= $sideArticle->writer_id ?><</strong> -<?= $sideArticle->date ?> -<?= $sideArticle->time ?></p>
                     <?php
                     }
                     ?>
